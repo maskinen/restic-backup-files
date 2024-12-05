@@ -1,0 +1,14 @@
+[Unit]
+Description=Backup using Restic
+After=network.target
+
+[Service]
+Type=oneshot
+Environment=RESTIC_PASSWORD=Lillskrot05
+ExecStart=/usr/bin/restic -r /home/grevmaskin/restic_repo backup /home/grevmaskin/Documents --password-file /home/grevmaskin/.restic
+User=grevmaskin
+Group=grevmaskin
+UMask=0027
+
+[Install]
+WantedBy=multi-user.target
