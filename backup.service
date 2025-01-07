@@ -5,7 +5,7 @@ After=network.target
 [Service]
 Type=oneshot
 Environment=RESTIC_PASSWORD=Lillskrot05
-ExecStart=/usr/bin/restic -r /home/grevmaskin/restic_repo backup /home/grevmaskin/Documents --password-file /home/grevmaskin/.restic
+ExecStart=/usr/bin/restic -r sftp:192.168.56.102:/home/grevmaskin/restic_repo backup /home/grevmaskin/Documents --password-file /home/grevmaskin/.restic
 User=grevmaskin
 Group=grevmaskin
 UMask=0027
