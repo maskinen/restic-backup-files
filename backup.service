@@ -1,14 +1,16 @@
 [Unit]
-Description=Backup using Restic
+Description=Run Restic Backup to Fedora
 After=network.target
 
 [Service]
 Type=oneshot
-Environment=RESTIC_PASSWORD=Lillskrot05
-ExecStart=/usr/bin/restic -r sftp:192.168.56.102:/home/grevmaskin/restic_repo backup /home/grevmaskin/Documents --password-file /home/grevmaskin/.restic
+ExecStart=/bin/bash -c "export XDG_CACHE_HOME=/home/grevmaskin/.cache && /usr/bin/restic backup /home/grevmaskin/Documents --repo sftp:grevmaskin@192.168.56.102:/home/grevmaskin/restic_repo --password-file /home/grevmaskin/.restic"
 User=grevmaskin
 Group=grevmaskin
 UMask=0027
+NoNewPrivileges=true
+Environment="HOME=/home/grevmaskin"
+Environment="RESTIC_PASSWORD=Lillskrot05"
 
 [Install]
 WantedBy=multi-user.target
